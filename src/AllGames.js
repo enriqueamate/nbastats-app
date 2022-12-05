@@ -26,7 +26,7 @@ function gameQuery() {
   const day = String(today.getDate()).padStart(2, "0");
   const formattedDate = today.getFullYear() + "-" + month + "-" + day;
 
-  if (useFakeData) {
+  if (useFakeData === "true") {
     return fakeData;
   } else {
     return fetch(
@@ -51,9 +51,21 @@ function Games(props) {
   // const error = false;
 
   const gamesArr = [];
+  const loadingElement = (
+    <Backdrop
+      sx={{ color: "#000", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
+  );
 
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
+  if (isLoading) return loadingElement;
+  if (error)
+    return (
+      <Alert severity="error">
+        This is an error alert — check it out! {error.message}
+      </Alert>
+    );
 
   for (let index = 0; index < data.response.length; index++) {
     const element = data.response[index];
