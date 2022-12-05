@@ -21,7 +21,7 @@ const teamQuery = () => {
       "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
     },
   };
-  if (useFakeData === true) {
+  if (useFakeData === "true") {
     return fakeData;
   } else {
     return fetch(
