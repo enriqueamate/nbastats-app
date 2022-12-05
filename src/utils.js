@@ -5,6 +5,13 @@ export function getApiKey() {
   return apiKey;
 }
 
+export function getFakeData() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const usefakeData = urlParams.get("useFakeData");
+  return usefakeData;
+}
+
 export function formatMatchDate(date) {
   const options = {
     year: "numeric",
