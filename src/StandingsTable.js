@@ -29,33 +29,43 @@ export default function StandingsTable(props) {
 
   for (let index = 0; index < data.length; index++) {
     const element = data[index];
-    const teamNick = element.team.nickname;
+
+    const teamNick = element.team.name;
     const gamesWon = element.win.total;
     const gamesLost = element.loss.total;
     const gamesPlayed = gamesWon + gamesLost;
+
     const reqConference = element.conference.name;
 
     if (reqConference === conference) {
       teamArr.push(
         <TableRow key={element.team.id}>
-          <TableCell>{teamNick}</TableCell>
-          <TableCell align="right">{gamesPlayed}</TableCell>
-          <TableCell align="right">{gamesWon}</TableCell>
-          <TableCell align="right">{gamesLost}</TableCell>
+          <TableCell align="center">{teamNick}</TableCell>
+          <TableCell align="center">{gamesPlayed}</TableCell>
+          <TableCell align="center">{gamesWon}</TableCell>
+          <TableCell align="center">{gamesLost}</TableCell>
         </TableRow>
       );
     }
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+    <TableContainer component={Paper} sx={{ maxWidth: "500px" }}>
+      <Table size="medium" aria-label="simple table">
+        <TableHead sx={{ backgroundColor: "#FF7575" }}>
           <TableRow>
-            <TableCell>Team</TableCell>
-            <TableCell align="right">Games Played</TableCell>
-            <TableCell align="right">Won</TableCell>
-            <TableCell align="right">Lost</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "900" }}>
+              Team
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "900" }}>
+              Games Played
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "900" }}>
+              Won
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "900" }}>
+              Lost
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{teamArr}</TableBody>
