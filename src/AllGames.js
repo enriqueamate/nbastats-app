@@ -5,7 +5,6 @@ import { getApiKey } from "./utils";
 
 function gameQuery() {
   const apiKey = getApiKey();
-  console.log(apiKey);
 
   const options = {
     method: "GET",

@@ -5,7 +5,6 @@ import { getApiKey } from "./utils";
 
 const teamQuery = () => {
   const apiKey = getApiKey();
-  console.log(apiKey);
 
   const options = {
     method: "GET",
