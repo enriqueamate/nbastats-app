@@ -1,7 +1,10 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import fakeData from "./data.json";
 import "./App.css";
 import { getApiKey } from "./utils";
+import MatchCard from "./MatchCard";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 function gameQuery() {
   const apiKey = getApiKey();
@@ -35,6 +38,10 @@ function Games(props) {
     retry: 0,
   });
 
+  // const data = fakeData;
+  // const isLoading = false;
+  // const error = false;
+
   const gamesArr = [];
 
   if (isLoading) return "Loading...";
@@ -50,25 +57,7 @@ function Games(props) {
       break;
     }
 
-    const homeNick = element.teams.home.nickname;
-    const visitorNick = element.teams.visitors.nickname;
-
-    const options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: false,
-      timeZone: "America/Mexico_City",
-    };
-
-    const gameTime = new Date(element.date.start);
-    const formattedTime = new Intl.DateTimeFormat("en-US", options).format(
-      gameTime
-    );
-    const match = `${homeNick} vs ${visitorNick} - ${formattedTime}`;
-    gamesArr.push(<li key={element.id}>{match}</li>);
+    gamesArr.push(<MatchCard key={element.id} data={element} />);
   }
 
   if (gamesArr.length === 0 && status === "Live") {
@@ -81,7 +70,16 @@ function Games(props) {
 
   return (
     <div>
-      <ul>{gamesArr}</ul>
+      {/* AGREGAR STATUS MESSAGE */}
+      <Typography></Typography>
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
+      >
+        {gamesArr}
+      </Stack>
     </div>
   );
 }
