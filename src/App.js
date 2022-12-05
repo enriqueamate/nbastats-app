@@ -20,51 +20,53 @@ function App() {
   }
   return (
     <Container maxWidth="lg" sx={{ m: 5 }}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={0}
-        marginBottom="4em"
-      >
-        <Stack direction="row" justifyContent="center" alignItems="center">
+      <Stack direction="row" aligItems="center" justifyContent="center">
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={0}
+          marginBottom="4em"
+        >
+          <Stack direction="row" justifyContent="center" alignItems="center">
+            <Typography
+              sx={{
+                color: "red",
+                fontStyle: "bold",
+                fontWeight: "900",
+                fontSize: "5em",
+              }}
+            >
+              NBA
+            </Typography>
+            <Typography
+              sx={{ color: "black", fontWeight: "200", fontSize: "5em" }}
+            >
+              STATS
+            </Typography>
+          </Stack>
           <Typography
             sx={{
-              color: "red",
-              fontStyle: "bold",
-              fontWeight: "900",
-              fontSize: "5em",
+              color: "black",
+              fontWeight: "100",
+              fontSize: "1em",
+              marginTop: "5px",
             }}
           >
-            NBA
+            A PROJECT BY ENRIQUE AMATE
           </Typography>
           <Typography
-            sx={{ color: "black", fontWeight: "200", fontSize: "5em" }}
+            sx={{
+              color: "grey",
+              fontWeight: "100",
+              fontSize: "1em",
+              marginTop: "5px",
+              fontStyle: "italic",
+            }}
           >
-            STATS
+            A simple application to consume data from API-NBA by Rapidapi
           </Typography>
         </Stack>
-        <Typography
-          sx={{
-            color: "black",
-            fontWeight: "100",
-            fontSize: "1em",
-            marginTop: "5px",
-          }}
-        >
-          A PROJECT BY ENRIQUE AMATE
-        </Typography>
-        <Typography
-          sx={{
-            color: "grey",
-            fontWeight: "100",
-            fontSize: "1em",
-            marginTop: "5px",
-            fontStyle: "italic",
-          }}
-        >
-          A simple application to consume data from API-NBA by Rapidapi
-        </Typography>
       </Stack>
 
       <QueryClientProvider client={queryClient}>
