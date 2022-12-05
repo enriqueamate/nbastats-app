@@ -1,7 +1,8 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import fakeData from "./teamData.json";
 import "./App.css";
 import { getApiKey } from "./utils";
+import StandingsTable from "./StandingsTable";
 
 const teamQuery = () => {
   const apiKey = getApiKey();
@@ -28,67 +29,17 @@ function AllTeams() {
     queryFn: teamQuery,
     retry: 0,
   });
+  //   const data = fakeData;
+  //   const isLoading = false;
+  //   const error = false;
 
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
 
-  const east = [];
-  const west = [];
-
-  for (let index = 0; index < data.response.length; index++) {
-    const element = data.response[index];
-
-    const teamNick = element.team.nickname;
-    const gamesWon = element.win.total;
-    const gamesLost = element.loss.total;
-    const gamesPlayed = gamesWon + gamesLost;
-    const conference = element.conference.name;
-
-    if (conference === "east") {
-      east.push(
-        <tr key={element.team.id}>
-          <td>{teamNick}</td>
-          <td>{gamesPlayed}</td>
-          <td>{gamesWon}</td>
-          <td>{gamesLost}</td>
-        </tr>
-      );
-    } else {
-      west.push(
-        <tr key={element.team.id}>
-          <td>{teamNick}</td>
-          <td>{gamesPlayed}</td>
-          <td>{gamesWon}</td>
-          <td>{gamesLost}</td>
-        </tr>
-      );
-    }
-  }
-
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>Games Played</th>
-            <th>Won</th>
-            <th>Lost</th>
-          </tr>
-        </thead>
-        <tbody>{west}</tbody>
-      </table>
-      <table>
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>Games Played</th>
-            <th>Won</th>
-            <th>Lost</th>
-          </tr>
-        </thead>
-        <tbody>{east}</tbody>
-      </table>
+      <StandingsTable data={data.response} conference="east" />
+      <StandingsTable data={data.response} conference="west" />
     </div>
   );
 }
